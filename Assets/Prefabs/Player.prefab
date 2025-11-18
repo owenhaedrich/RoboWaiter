@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed0788f54571cf40a4f49acc80f05ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  Speed: 50
+  Speed: 20
   TurnTorque: 5
   Reset: 0
   GainP: 3
