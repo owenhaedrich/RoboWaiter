@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     WheelCollider Wheel;
     Rigidbody Body;
     PlayerControls Controls;
-    public float Speed = 50f;
+    public float Speed = 20f;
     public float TurnTorque = 5f;
     public bool Reset = false;
 
@@ -38,15 +38,15 @@ public class Player : MonoBehaviour
     }
 
     // Try to keep the player balanced upright using PID controller
-    public float GainP = 0.0f;
-    public float GainI = 0.0f;
-    public float GainD = 0.0f;
+    public float GainP = 3.0f;
+    public float GainI = 1.0f;
+    public float GainD = 1.0f;
     public float lastErrorX = 0.0f;
     public float integratedErrorX = 0.0f;
     public float lastErrorZ = 0.0f;
     public float integratedErrorZ = 0.0f;
-    public float outputMax = 5.0f;
-    public float outputMin = -5.0f;
+    public float outputMax = 25.0f;
+    public float outputMin = -25.0f;
 
     Vector3 BalanceControl()
     {
