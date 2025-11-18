@@ -7,13 +7,17 @@ public class Player : MonoBehaviour
     WheelCollider Wheel;
     Rigidbody Body;
     PlayerControls Controls;
+
+    [Header("Movement Parameters")]
     public float Speed = 20f;
     public float TurnTorque = 5f;
     public float TurnSpeed = 5f;
+
+    [Header("Leaning Parameters")]
     public float LeanSpeed = 7f;
     public float LeanTurnSpeed = 3f;
     public float LeanTurnAtMinVelocity = 0.2f;
-    public float TurnVelocityFactor = 0.5f;
+    public float LeanTurnVelocityFactor = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,7 +45,7 @@ public class Player : MonoBehaviour
 
         // Leaning turn (camber thrust)
         float leanAmount = Mathf.DeltaAngle(0f, Body.transform.eulerAngles.x) / 180;
-        float velocityFactor = LeanTurnAtMinVelocity + Body.linearVelocity.magnitude * TurnVelocityFactor; 
+        float velocityFactor = LeanTurnAtMinVelocity + Body.linearVelocity.magnitude * LeanTurnVelocityFactor; 
         Body.AddRelativeTorque(0, -leanAmount * LeanTurnSpeed * velocityFactor, 0);
 
         // Apply balancing torque
@@ -55,8 +59,9 @@ public class Player : MonoBehaviour
     }
 
     // Try to keep the player balanced upright using PD controller
-    public float GainP = 1.0f;
-    public float GainD = 1.0f;
+    [Header("Balancing Parameters")]
+    public float ProportionalBalancing = 1.0f;
+    public float Damping = 1.0f;
     public float outputMax = 15.0f;
 
     Vector3 BalanceControl()
@@ -70,8 +75,8 @@ public class Player : MonoBehaviour
         float velZ = Body.angularVelocity.z;
 
         // Simple PD control (often better than PID for balancing)
-        float torqueX = -(GainP * angleX + GainD * velX);
-        float torqueZ = -(GainP * angleZ + GainD * velZ);
+        float torqueX = -(ProportionalBalancing * angleX + Damping * velX);
+        float torqueZ = -(ProportionalBalancing * angleZ + Damping * velZ);
 
         return new Vector3(
             Mathf.Clamp(torqueX, -outputMax, outputMax),
