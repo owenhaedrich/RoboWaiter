@@ -925,26 +925,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1351470430989371823, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: m_Radius
-      value: 0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351470430989371823, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: m_SuspensionDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351470430989371823, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 4500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351470430989371823, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 35000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351470430989371823, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: m_SuspensionSpring.targetPosition
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3374820162109145574, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -988,6 +968,14 @@ PrefabInstance:
     - target: {fileID: 4167664106554258313, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517069938263409258, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
+      propertyPath: outputMax
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517069938263409258, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
+      propertyPath: TurnVelocityFactor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

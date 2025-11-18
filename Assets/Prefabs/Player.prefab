@@ -50,9 +50,10 @@ MonoBehaviour:
   Speed: 20
   TurnTorque: 5
   TurnSpeed: 5
-  LeanSpeed: 10
-  LeanTurnSpeed: 5
-  TurnVelocityFactor: 0.1
+  LeanSpeed: 7
+  LeanTurnSpeed: 3
+  LeanTurnAtMinVelocity: 0.2
+  TurnVelocityFactor: 0.5
   GainP: 1
   GainD: 1
   outputMax: 15
@@ -284,7 +285,7 @@ WheelCollider:
   m_GameObject: {fileID: 5884148003945300892}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.45
+  m_Radius: 0.44
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
