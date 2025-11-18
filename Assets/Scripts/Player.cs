@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -9,6 +8,7 @@ public class Player : MonoBehaviour
     PlayerControls Controls;
     public float Speed = 20f;
     public float TurnTorque = 5f;
+    public float TurnSpeed = 5f;
     public bool Reset = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,7 +24,11 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 input = Controls.Player.Move.ReadValue<Vector2>();
+
+        // Forward and backward movement
         Wheel.motorTorque = input.y * Speed;
+
+        // Left and right turning
         Body.AddRelativeTorque(0, input.x * TurnTorque, 0);
 
         // Apply balancing torque
@@ -37,14 +41,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Try to keep the player balanced upright using PID controller
+    // Try to keep the player balanced upright using PD controller
     public float GainP = 3.0f;
-    public float GainI = 1.0f;
     public float GainD = 1.0f;
-    public float lastErrorX = 0.0f;
-    public float integratedErrorX = 0.0f;
-    public float lastErrorZ = 0.0f;
-    public float integratedErrorZ = 0.0f;
     public float outputMax = 25.0f;
     public float outputMin = -25.0f;
 
