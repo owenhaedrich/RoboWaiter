@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody Body;
     PlayerControls Controls;
     public float Speed = 50f;
+    public float TurnTorque = 5f;
     public bool Reset = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     {
         Vector2 input = Controls.Player.Move.ReadValue<Vector2>();
         Wheel.motorTorque = input.y * Speed;
+        Body.AddRelativeTorque(0, input.x * TurnTorque, 0);
 
         // Apply balancing torque
         Body.AddRelativeTorque(BalanceControl());

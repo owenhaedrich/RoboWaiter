@@ -266,16 +266,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed0788f54571cf40a4f49acc80f05ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  Speed: 50
+  TurnTorque: 5
   Reset: 0
   GainP: 5
-  GainI: 0
-  GainD: 0
+  GainI: 1
+  GainD: 1
   lastErrorX: 0
   integratedErrorX: 0
   lastErrorZ: 0
   integratedErrorZ: 0
-  outputMax: 10
-  outputMin: -10
+  outputMax: 15
+  outputMin: -15
 --- !u!1 &243325800
 GameObject:
   m_ObjectHideFlags: 0
