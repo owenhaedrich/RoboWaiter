@@ -46,18 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed0788f54571cf40a4f49acc80f05ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  Reset: 0
   Speed: 20
   TurnTorque: 5
-  Reset: 0
-  GainP: 3
-  GainI: 1
+  TurnSpeed: 5
+  LeanSpeed: 10
+  LeanTurnSpeed: 5
+  TurnVelocityFactor: 0.1
+  GainP: 1
   GainD: 1
-  lastErrorX: 0
-  integratedErrorX: 0
-  lastErrorZ: 0
-  integratedErrorZ: 0
-  outputMax: 25
-  outputMin: -25
+  outputMax: 15
 --- !u!1 &5197518222973938303
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +181,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.25
+  m_AngularDamping: 5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -242,14 +240,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5884148003945300892}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3595176178537448880}
   m_Father: {fileID: 4167664106554258313}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &5738889572624989410
 Rigidbody:
   m_ObjectHideFlags: 0

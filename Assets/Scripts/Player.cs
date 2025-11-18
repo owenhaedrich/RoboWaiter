@@ -3,13 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public bool Reset = false;
     WheelCollider Wheel;
     Rigidbody Body;
     PlayerControls Controls;
     public float Speed = 20f;
     public float TurnTorque = 5f;
     public float TurnSpeed = 5f;
-    public bool Reset = false;
+    public float LeanSpeed = 7f;
+    public float LeanTurnSpeed = 3f;
+    public float LeanTurnAtMinVelocity = 0.2f;
+    public float TurnVelocityFactor = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,13 +27,22 @@ public class Player : MonoBehaviour
     // FixedUpdate is called once per physics update
     void FixedUpdate()
     {
-        Vector2 input = Controls.Player.Move.ReadValue<Vector2>();
+        Vector2 moveInput = Controls.Player.Move.ReadValue<Vector2>();
+        Vector2 leanInput = Controls.Player.Lean.ReadValue<Vector2>();
 
         // Forward and backward movement
-        Wheel.motorTorque = input.y * Speed;
+        Wheel.motorTorque = moveInput.y * Speed;
 
         // Left and right turning
-        Body.AddRelativeTorque(0, input.x * TurnTorque, 0);
+        Body.AddRelativeTorque(0, moveInput.x * TurnTorque, 0);
+
+        // Leaning
+        Body.AddRelativeTorque(-leanInput.x * LeanSpeed, 0, -leanInput.y * LeanSpeed);
+
+        // Leaning turn (camber thrust)
+        float leanAmount = Mathf.DeltaAngle(0f, Body.transform.eulerAngles.x) / 180;
+        float velocityFactor = LeanTurnAtMinVelocity + Body.linearVelocity.magnitude * TurnVelocityFactor; 
+        Body.AddRelativeTorque(0, -leanAmount * LeanTurnSpeed * velocityFactor, 0);
 
         // Apply balancing torque
         Body.AddRelativeTorque(BalanceControl());
@@ -37,15 +50,14 @@ public class Player : MonoBehaviour
 
         if (Reset)
         {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
     // Try to keep the player balanced upright using PD controller
-    public float GainP = 3.0f;
+    public float GainP = 1.0f;
     public float GainD = 1.0f;
-    public float outputMax = 25.0f;
-    public float outputMin = -25.0f;
+    public float outputMax = 15.0f;
 
     Vector3 BalanceControl()
     {
@@ -62,9 +74,9 @@ public class Player : MonoBehaviour
         float torqueZ = -(GainP * angleZ + GainD * velZ);
 
         return new Vector3(
-            Mathf.Clamp(torqueX, outputMin, outputMax),
+            Mathf.Clamp(torqueX, -outputMax, outputMax),
             0,
-            Mathf.Clamp(torqueZ, outputMin, outputMax)
+            Mathf.Clamp(torqueZ, -outputMax, outputMax)
         );
     }
 }
