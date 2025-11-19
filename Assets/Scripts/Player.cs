@@ -44,13 +44,12 @@ public class Player : MonoBehaviour
         Body.AddRelativeTorque(-leanInput.x * LeanSpeed, 0, -leanInput.y * LeanSpeed);
 
         // Leaning turn (camber thrust)
-        float leanAmount = Mathf.DeltaAngle(0f, Body.transform.eulerAngles.x) / 180;
+        float leanAmount = Mathf.DeltaAngle(0f, Body.transform.eulerAngles.x) / 180f;
         float velocityFactor = LeanTurnAtMinVelocity + Body.linearVelocity.magnitude * LeanTurnVelocityFactor; 
         Body.AddRelativeTorque(0, -leanAmount * LeanTurnSpeed * velocityFactor, 0);
 
         // Apply balancing torque
-        Body.AddRelativeTorque(BalanceControl());
-        Debug.Log(BalanceControl());
+        Body.AddRelativeTorque(BalanceControl(leanInput != Vector2.zero));
 
         if (Reset)
         {
@@ -64,7 +63,7 @@ public class Player : MonoBehaviour
     public float Damping = 1.0f;
     public float outputMax = 15.0f;
 
-    Vector3 BalanceControl()
+    Vector3 BalanceControl(bool leaning)
     {
         // Get signed angles (-180 to 180)
         float angleX = Mathf.DeltaAngle(0f, Body.transform.eulerAngles.x);
@@ -75,10 +74,12 @@ public class Player : MonoBehaviour
         float velZ = Body.angularVelocity.z;
 
         // Simple PD control (often better than PID for balancing)
+        float damping = Damping;
+        if (leaning) damping = 0f; // Disable damping when leaning
         float torqueX = -(ProportionalBalancing * angleX + Damping * velX);
         float torqueZ = -(ProportionalBalancing * angleZ + Damping * velZ);
 
-        return new Vector3(
+            return new Vector3(
             Mathf.Clamp(torqueX, -outputMax, outputMax),
             0,
             Mathf.Clamp(torqueZ, -outputMax, outputMax)

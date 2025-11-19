@@ -970,12 +970,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8517069938263409258, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: outputMax
-      value: 13
+      propertyPath: Damping
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8517069938263409258, guid: 30a2466766433ef47abbc370a41fce3b, type: 3}
-      propertyPath: TurnVelocityFactor
-      value: 1
+      propertyPath: LeanSpeed
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
