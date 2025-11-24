@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
         // Apply balancing torque
         Body.AddRelativeTorque(BalanceControl());
-        Debug.Log(BalanceControl());
+        //Debug.Log(BalanceControl());
 
         if (Reset)
         {
