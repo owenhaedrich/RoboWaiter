@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &13358782 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2451597389497143022, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
+  m_PrefabInstance: {fileID: 1681954129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188609652
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,11 +856,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1250565204 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4167664106554258313, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
-  m_PrefabInstance: {fileID: 1681954129}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443363807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1086,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1351470430989371823, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351470430989371823, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351470430989371823, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3374820162109145574, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
       propertyPath: m_Name
       value: Player02
@@ -1297,7 +1309,7 @@ PrefabInstance:
     - target: {fileID: 3701685172488477275, guid: 480c852f3e8ca264e9f7e4ecfa6f6f37, type: 3}
       propertyPath: FollowTarget
       value: 
-      objectReference: {fileID: 1250565204}
+      objectReference: {fileID: 13358782}
     - target: {fileID: 7451623411292573391, guid: 480c852f3e8ca264e9f7e4ecfa6f6f37, type: 3}
       propertyPath: m_Name
       value: Follow Camera
