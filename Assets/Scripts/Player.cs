@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public bool Reset = false;
+    public bool FlipLeanControls = false;
     WheelCollider Wheel;
     Rigidbody Body;
     PlayerControls Controls;
@@ -41,7 +42,14 @@ public class Player : MonoBehaviour
         Body.AddRelativeTorque(0, moveInput.x * TurnTorque, 0);
 
         // Leaning
-        Body.AddRelativeTorque(-leanInput.x * LeanSpeed, 0, -leanInput.y * LeanSpeed);
+        if (FlipLeanControls)
+        {
+            Body.AddRelativeTorque(-leanInput.x * LeanSpeed, 0, -leanInput.y * LeanSpeed);
+        }
+        else
+        {
+            Body.AddRelativeTorque(leanInput.y * LeanSpeed, 0, -leanInput.x * LeanSpeed);
+        }
 
         // Leaning turn (camber thrust)
         float leanAmount = Mathf.DeltaAngle(0f, Body.transform.eulerAngles.x) / 180f;
