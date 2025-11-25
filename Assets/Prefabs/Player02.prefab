@@ -50,13 +50,16 @@ MonoBehaviour:
   Speed: 20
   TurnTorque: 5
   TurnSpeed: 5
-  LeanSpeed: 21
+  LeanSpeed: 30
   LeanTurnSpeed: 3
   LeanTurnAtMinVelocity: 0.2
   LeanTurnVelocityFactor: 0.5
-  ProportionalBalancing: 3
+  MinimumSpeedForBalancing: 0.1
+  MinimumSpeedFactor: 1
+  SpeedFactor: 1.5
+  ProportionalBalancing: 1
   Damping: 1
-  outputMax: 30
+  outputMax: 15
 --- !u!1 &4105789133234954979
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float TurnSpeed = 5f;
 
     [Header("Leaning Parameters")]
-    public float LeanSpeed = 7f;
+    public float LeanSpeed = 30f;
     public float LeanTurnSpeed = 3f;
     public float LeanTurnAtMinVelocity = 0.2f;
     public float LeanTurnVelocityFactor = 0.5f;
@@ -59,14 +59,18 @@ public class Player : MonoBehaviour
         // Apply balancing torque
         Body.AddRelativeTorque(BalanceControl(leanInput != Vector2.zero));
 
-        if (Reset)
+        if (Reset || Controls.Player.Reset.IsPressed())
         {
+            Controls.Disable();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
     // Try to keep the player balanced upright using PD controller
     [Header("Balancing Parameters")]
+    public float MinimumSpeedForBalancing = 0.1f;
+    public float MinimumSpeedFactor = 1.0f;
+    public float SpeedFactor = 1.5f;
     public float ProportionalBalancing = 1.0f;
     public float Damping = 1.0f;
     public float outputMax = 15.0f;
@@ -84,8 +88,9 @@ public class Player : MonoBehaviour
         // Simple PD control (often better than PID for balancing)
         float damping = Damping;
         if (leaning) damping = 0f; // Disable damping when leaning
-        float torqueX = -(ProportionalBalancing * angleX + Damping * velX);
-        float torqueZ = -(ProportionalBalancing * angleZ + Damping * velZ);
+        float speedFactor = Body.linearVelocity.magnitude < MinimumSpeedForBalancing ? MinimumSpeedFactor : SpeedFactor * Body.linearVelocity.magnitude;
+        float torqueX = -(ProportionalBalancing * angleX + Damping * velX) * speedFactor;
+        float torqueZ = -(ProportionalBalancing * angleZ + Damping * velZ) * speedFactor;
 
             return new Vector3(
             Mathf.Clamp(torqueX, -outputMax, outputMax),

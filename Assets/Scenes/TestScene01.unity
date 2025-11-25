@@ -1086,18 +1086,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1351470430989371823, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
-      propertyPath: m_SuspensionDistance
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351470430989371823, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351470430989371823, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 3374820162109145574, guid: 325e360d3ce8d4a4f8b0bacbbea88165, type: 3}
       propertyPath: m_Name
       value: Player02
