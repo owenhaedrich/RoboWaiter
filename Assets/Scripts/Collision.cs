@@ -22,6 +22,7 @@ public class Collision : MonoBehaviour
         {
             Debug.Log("Hit an obstacle!");
             transform.position = startPos;
+            transform.rotation = Quaternion.identity;
         }
     }
 }
