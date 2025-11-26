@@ -136,6 +136,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mode1"",
+                    ""type"": ""Button"",
+                    ""id"": ""3056548d-e729-4acc-9c82-0bf3046000ca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mode2"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff6e1272-330a-4186-a291-04071b9ad2ef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mode3"",
+                    ""type"": ""Button"",
+                    ""id"": ""92ad3fa9-0337-41ff-b7f8-51ac2df534b0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -281,6 +308,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""InteractL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34c03c17-6ada-4d03-a823-875dcc6c91fb"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mode1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b92deb1-6627-4eca-95ae-f69f4a711ab2"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mode2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9929b44b-6fe3-49f8-86df-163a04e8c300"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mode3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -294,6 +354,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
         m_Player_InteractR = m_Player.FindAction("InteractR", throwIfNotFound: true);
         m_Player_InteractL = m_Player.FindAction("InteractL", throwIfNotFound: true);
+        m_Player_Mode1 = m_Player.FindAction("Mode1", throwIfNotFound: true);
+        m_Player_Mode2 = m_Player.FindAction("Mode2", throwIfNotFound: true);
+        m_Player_Mode3 = m_Player.FindAction("Mode3", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -379,6 +442,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reset;
     private readonly InputAction m_Player_InteractR;
     private readonly InputAction m_Player_InteractL;
+    private readonly InputAction m_Player_Mode1;
+    private readonly InputAction m_Player_Mode2;
+    private readonly InputAction m_Player_Mode3;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -410,6 +476,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/InteractL".
         /// </summary>
         public InputAction @InteractL => m_Wrapper.m_Player_InteractL;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Mode1".
+        /// </summary>
+        public InputAction @Mode1 => m_Wrapper.m_Player_Mode1;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Mode2".
+        /// </summary>
+        public InputAction @Mode2 => m_Wrapper.m_Player_Mode2;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Mode3".
+        /// </summary>
+        public InputAction @Mode3 => m_Wrapper.m_Player_Mode3;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -451,6 +529,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @InteractL.started += instance.OnInteractL;
             @InteractL.performed += instance.OnInteractL;
             @InteractL.canceled += instance.OnInteractL;
+            @Mode1.started += instance.OnMode1;
+            @Mode1.performed += instance.OnMode1;
+            @Mode1.canceled += instance.OnMode1;
+            @Mode2.started += instance.OnMode2;
+            @Mode2.performed += instance.OnMode2;
+            @Mode2.canceled += instance.OnMode2;
+            @Mode3.started += instance.OnMode3;
+            @Mode3.performed += instance.OnMode3;
+            @Mode3.canceled += instance.OnMode3;
         }
 
         /// <summary>
@@ -477,6 +564,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @InteractL.started -= instance.OnInteractL;
             @InteractL.performed -= instance.OnInteractL;
             @InteractL.canceled -= instance.OnInteractL;
+            @Mode1.started -= instance.OnMode1;
+            @Mode1.performed -= instance.OnMode1;
+            @Mode1.canceled -= instance.OnMode1;
+            @Mode2.started -= instance.OnMode2;
+            @Mode2.performed -= instance.OnMode2;
+            @Mode2.canceled -= instance.OnMode2;
+            @Mode3.started -= instance.OnMode3;
+            @Mode3.performed -= instance.OnMode3;
+            @Mode3.canceled -= instance.OnMode3;
         }
 
         /// <summary>
@@ -552,5 +648,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteractL(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mode1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMode1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mode2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMode2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mode3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMode3(InputAction.CallbackContext context);
     }
 }
