@@ -44,11 +44,11 @@ public class Player : MonoBehaviour
         // Leaning
         if (FlipLeanControls)
         {
-            Body.AddRelativeTorque(-leanInput.x * LeanSpeed, 0, -leanInput.y * LeanSpeed);
+            Body.AddRelativeForce(leanInput.y * LeanSpeed, 0, -leanInput.x * LeanSpeed);
         }
         else
         {
-            Body.AddRelativeTorque(leanInput.y * LeanSpeed, 0, -leanInput.x * LeanSpeed);
+            Body.AddRelativeForce(leanInput.x * LeanSpeed, 0, leanInput.y * LeanSpeed);
         }
 
         // Leaning turn (camber thrust)
