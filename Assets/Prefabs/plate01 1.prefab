@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: plate01 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d7b9adab88d0a5449a965f7275ced2e8, type: 3}
+      propertyPath: m_TagString
+      value: Plates
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d7b9adab88d0a5449a965f7275ced2e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.09874
