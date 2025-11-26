@@ -57,11 +57,8 @@ public class Player : MonoBehaviour
         Controls.Enable();
     }
 
-    void FixedUpdate()
+    private void Update()
     {
-        HandleMovement();
-        HandleBalancing();
-
         // Handle Interactions
         if (Controls.Player.InteractR.WasPressedThisFrame())
         {
@@ -73,12 +70,32 @@ public class Player : MonoBehaviour
             HandleInteraction(HoldPointL, HoldJointL, ref HeldObjectL);
         }
 
-        // Reset the level
-        if (Reset || Controls.Player.Reset.IsPressed())
+        // Change Mode
+        if (Controls.Player.Mode1.WasPressedThisFrame())
+        {
+            ProportionalBalancing = 0.1f;
+        }
+        if (Controls.Player.Mode2.WasPressedThisFrame())
+        {
+            ProportionalBalancing = 0.5f;
+        }
+        if (Controls.Player.Mode3.WasPressedThisFrame())
+        {
+            ProportionalBalancing = 1.0f;
+        }
+
+            // Reset the level
+            if (Reset || Controls.Player.Reset.IsPressed())
         {
             Controls.Disable();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    void FixedUpdate()
+    {
+        HandleMovement();
+        HandleBalancing();
     }
 
     // --- PICKUP AND DROP ---
@@ -87,7 +104,7 @@ public class Player : MonoBehaviour
     {
         if (heldObject != null)
         {
-            holdJoint.connectedBody = null;
+            holdJoint.connectedBody = Body;
             heldObject = null;
             return;
         }
