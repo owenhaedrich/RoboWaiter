@@ -152,3 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FollowCamera
   FollowTarget: {fileID: 0}
   Offset: {x: 0, y: 1, z: -10}
+  CameraLerpSpeed: 5
+  MaxTiltAngle: 30
+  RotationOffset: {x: 0, y: 90, z: 0}
