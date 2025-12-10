@@ -5,7 +5,7 @@ public class PlateSpawner : MonoBehaviour
     public Transform[] spawnPoints;
     public GameObject[] platePrefabs;
 
-    public float spawnInterval = 3f;
+    public float spawnInterval = 0.03f;
     private float timer;
 
     void Update()
