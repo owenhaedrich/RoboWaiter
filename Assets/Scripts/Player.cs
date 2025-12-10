@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         }
 
         // Change Mode
-        if (Controls.Player.Mode1.WasPressedThisFrame())
+        /*if (Controls.Player.Mode1.WasPressedThisFrame())
         {
             ProportionalBalancing = 0.1f;
         }
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         if (Controls.Player.Mode3.WasPressedThisFrame())
         {
             ProportionalBalancing = 1.0f;
-        }
+        }*/
 
             // Reset the level
             if (Reset || Controls.Player.Reset.IsPressed())
