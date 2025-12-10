@@ -17,6 +17,18 @@ PrefabInstance:
       value: Plates
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.09874
       objectReference: {fileID: 0}
@@ -56,6 +68,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -70,6 +86,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8158572622020052876}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 402681245160663244}
   m_SourcePrefab: {fileID: 100100000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
 --- !u!1 &3992356920547675818 stripped
 GameObject:
@@ -84,7 +103,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3992356920547675818}
   serializedVersion: 5
-  m_Mass: 0.3
+  m_Mass: 0.05
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -125,3 +144,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c430760b857fa764eb248baf06c0bf54, type: 3}
+--- !u!114 &402681245160663244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992356920547675818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1af4e3a8097bef4d93b23e50836aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plate
+  plateType: 0

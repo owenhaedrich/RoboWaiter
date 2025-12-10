@@ -163,6 +163,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraZoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""340c5248-c443-4156-850b-563b5875caf6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CameraToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""280187f4-ad05-4e47-8c4d-02dd07c76c80"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -341,6 +359,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Mode3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""cfb5e0ab-28a0-4db7-b486-45e3f3d14a4e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""64a95e0c-2440-4f1d-aa88-c97922edb035"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""5103237a-0b48-4717-9b72-d444ec35ac4e"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0204fa10-5521-48be-b5ad-9db7a527de6a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -357,6 +419,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Mode1 = m_Player.FindAction("Mode1", throwIfNotFound: true);
         m_Player_Mode2 = m_Player.FindAction("Mode2", throwIfNotFound: true);
         m_Player_Mode3 = m_Player.FindAction("Mode3", throwIfNotFound: true);
+        m_Player_CameraZoom = m_Player.FindAction("CameraZoom", throwIfNotFound: true);
+        m_Player_CameraToggle = m_Player.FindAction("CameraToggle", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -445,6 +509,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Mode1;
     private readonly InputAction m_Player_Mode2;
     private readonly InputAction m_Player_Mode3;
+    private readonly InputAction m_Player_CameraZoom;
+    private readonly InputAction m_Player_CameraToggle;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -488,6 +554,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Mode3".
         /// </summary>
         public InputAction @Mode3 => m_Wrapper.m_Player_Mode3;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/CameraZoom".
+        /// </summary>
+        public InputAction @CameraZoom => m_Wrapper.m_Player_CameraZoom;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/CameraToggle".
+        /// </summary>
+        public InputAction @CameraToggle => m_Wrapper.m_Player_CameraToggle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -538,6 +612,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Mode3.started += instance.OnMode3;
             @Mode3.performed += instance.OnMode3;
             @Mode3.canceled += instance.OnMode3;
+            @CameraZoom.started += instance.OnCameraZoom;
+            @CameraZoom.performed += instance.OnCameraZoom;
+            @CameraZoom.canceled += instance.OnCameraZoom;
+            @CameraToggle.started += instance.OnCameraToggle;
+            @CameraToggle.performed += instance.OnCameraToggle;
+            @CameraToggle.canceled += instance.OnCameraToggle;
         }
 
         /// <summary>
@@ -573,6 +653,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Mode3.started -= instance.OnMode3;
             @Mode3.performed -= instance.OnMode3;
             @Mode3.canceled -= instance.OnMode3;
+            @CameraZoom.started -= instance.OnCameraZoom;
+            @CameraZoom.performed -= instance.OnCameraZoom;
+            @CameraZoom.canceled -= instance.OnCameraZoom;
+            @CameraToggle.started -= instance.OnCameraToggle;
+            @CameraToggle.performed -= instance.OnCameraToggle;
+            @CameraToggle.canceled -= instance.OnCameraToggle;
         }
 
         /// <summary>
@@ -669,5 +755,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMode3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CameraZoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCameraZoom(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CameraToggle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCameraToggle(InputAction.CallbackContext context);
     }
 }
