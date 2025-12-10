@@ -8,15 +8,15 @@ Play as a one-wheeled robot who makes their living as a waiter. Deliver plates t
 
 Does balancing a unicycle-like player create mixed feelings of frustration and satisfaction?
 
-We believe that the balancing mechanic can be a strong central gameplay mechanic, however, it risks being either too hard and offputting, or too easy and unnecessary. Our goal is to find a balance between these extremes and create a healthy challenge. We want to determine whether balance based movement mechanics provides a satisfying difficulty curve where players jump between brief moments of frustration and clear moments of success, creating an emotional arc that feels both challenging and rewarding.
+We believe that the balancing mechanic can be a strong central gameplay mechanic, however, it risks being either too hard and offputting, or too easy and unnecessary. Our goal is to find a balance between these extremes and create a healthy challenge. We want to determine whether balance-based movement mechanics provide a satisfying difficulty curve where players jump between brief moments of frustration and clear moments of success, creating an emotional arc that feels both challenging and rewarding.
 
 ## Design Rationale
 
-The robot waiter scenario satisfies the needs of our objective statement with a reasonable scope. The enclosed restaurant environment limits our total asset requirements. We can leverage Unity’s built-in wheel collider, rigidbody, and fixed joint physics components to completely model our scenario.
+We believe that RoboWaiter is innovative because it's a unique concept that's easy to understand. 3D balancing games typically involve balancing a sphere around a course, Super Monkey Ball is a popular example. RoboWaiter is a 3D balancing game with a new take on the niche that brings a logical in-world explanation and motivation for the balancing mechanic. We also believe that the open floor simulation gameplay creates replayability.
 
-Since the balancing system is fully physics driven, players understand why they fail. When they tip, wobble, or overcorrect, the cause is visually and mechanically clear. This approach also lets us experiment with difficulty by adjusting physical properties (mass, drag, torque, friction) instead of building custom complex logic. The restaurant environment also offers built-in opportunities that encourage replayability. This can be achieved by changing table numbers each level or upon restart, moving or randomizing obstacles, and varying orders (weights) each run. Additionally, camera perspective options allow players to choose views that make the experience easier or more challenging.
+Since the balancing system is physics driven, players understand why they fail. When they tip, wobble, or overcorrect, the cause is visually and mechanically clear. This approach lets us experiment with difficulty by adjusting physical properties (mass, drag, torque, friction) instead of building custom complex logic. The restaurant environment also offers built-in opportunities that encourage replayability. This can be achieved by changing table numbers each level or upon restart, moving or randomizing obstacles, and varying orders (weights) each run. Additionally, camera perspective options allow players to choose views that make the experience easier or more challenging.
 
-The camera design also plays an important role in supporting the design mechanic. We used two cameras that allowed the player to choose between two perspectives by hitting the **TAB** button. The first perspective is a fixed and top-down camera, giving a greater sense of spatial awareness to the player and a more steady view. The second perspective is a third-person camera positioned closer behind the robot's head, showing its shoulders and raised arms that hold the trays. This perspective makes navigation more difficult as the camera sways and follows the players movements, making it easier to wobble or tip over. Allowing the players to switch between these perspectives adds a layer of strategy, accessibility, and personal preference, while still focusing on the core mechanics of balancing.
+The camera design also plays an important role in supporting the design mechanic. We allow the player to choose between two perspectives by hitting the **TAB** button. The first perspective is a fixed and top-down camera, giving a greater sense of spatial awareness to the player and a more steady view. The second perspective is a third-person camera positioned closer behind the robot's head, showing its shoulders and raised arms that hold the trays. This perspective makes navigation more visceral as the camera sways and follows the player's movements, and it's easier to become disoriented. Allowing the players to switch between these perspectives adds a layer of strategy, accessibility, and personal preference, while still focusing on the core mechanics of balancing.
 
 ## Unicycle Mechanics
 
@@ -26,11 +26,15 @@ Unicycle wheels turn when leaned. This is due to **camber thrust**. When the whe
 
 ***Wheel Physics Investigation Diagram: Camber Thrust***
 
+## Prototype Scope
+
+The robot waiter scenario satisfies the needs of our objective statement with a reasonable scope. The enclosed restaurant environment limits our total asset requirements. We can leverage Unity’s built-in wheel collider, rigidbody, and fixed joint physics components to completely model our scenario.
+
 ## Metric Research and References
 
 The RoboWaiter carries trays with real-world weights and mass, the game can simulate physics-based balancing. This creates a gameplay loop where managing balance is directly tied to the weight and player’s ability to stay balanced while moving.
 
-The player’s balance is influenced not only by the robot’s own mass but also by the objects it carries. Each plate adds weight and shifts the center of mass, dynamically affecting the robots stability. For example, a single burger may add only a small amount of mass near the center of the tray, while heavier items like a whole chicken or stacked plates create greater torque and a higher center of mass. These shifts make leaning, turning, and stopping more challenging, requiring the player to constantly adjust their tilt and wheel rotation.
+The player’s balance is influenced not only by the robot’s own mass but also by the objects it carries. Each plate adds weight and shifts the center of mass, dynamically affecting the robot's stability. For example, a single burger may add only a small amount of mass near the center of the tray, while heavier items like a whole chicken or stacked plates create greater torque and a higher center of mass. These shifts make leaning, turning, and stopping more challenging, requiring the player to constantly adjust their tilt and wheel rotation.
 
 | Food item | Approx real world weight | Plate name in game | Source and Notes |
 | :--- | :--- | :--- | :--- |
@@ -49,7 +53,7 @@ The player’s balance is influenced not only by the robot’s own mass but also
 | Plate | 0.711kg | | Taija weighed plates at home |
 | Bowl | 0.343kg | | Taija weighed bowls at home |
 | Coffee mug | 0.341kg | | Taija weighed a coffee mug at home |
-| Coffee mug filled | 0.662kg | | |
+| Coffee mug filled | 0.662kg | | Taija weighed a filled coffee mug at home |
 
 ![Scale Results](https://i.imgur.com/3yuUSok.png)
 ***Real World Scale Results***
@@ -62,9 +66,9 @@ Players described *RoboWaiter* as a unique and entertaining concept, with severa
 
 The most apparent criticism across all the feedback was the camera. Players described it as “VERY crazy,” “nauseating,” “too much,” and “hard to see what you’re doing at times.” Although a few testers felt the chaotic camera “almost adds to the experience,” the overall feedback was that a more stable or partially-following camera would improve the player experience without totally losing all the chaos the original camera brought.
 
-Movement and balancing were described as fun but sometimes “too” janky. Testers expressed that stopping would sometimes cause the robot to fling back and forth “like one of those spring doorstops.” Turning created really wide leans that were hard to correct, and once the robot fell over, some players stated they couldn't get back up. Some players enjoyed the difficulty curve these issues created, but others felt it could be more forgiving and better.
+Movement and balancing were described as fun but sometimes “too” janky. Testers expressed that stopping would sometimes cause the robot to fling back and forth “like one of those spring doorstops.” Turning created really wide leans that were hard to correct, and once the robot fell over, some players stated they couldn't get back up. Some players enjoyed the difficulty curve these issues created, but others felt it could be more forgiving.
 
-Interaction with the plates also raised some issues. While the grabbing plates function worked well, placing them back on counters or surfaces was “pretty hard to do.” However, this issue is not a real concern, as it serves only as a placeholder for the actual function, which is the player gets within a certain distance from the table and it will automatically be placed down onto it. One player did mention that “the plates spawn a bit too quickly to deliver them fast,” which added unnecessary pressure where we didn’t want and was tweaked for the final prototype.
+Interaction with the plates also raised some issues. While the grabbing plates function worked well, placing them back on counters or surfaces was “pretty hard to do.” However, this issue is not a real concern, as it serves only as a placeholder for the actual function, which is that the player gets within a certain distance from the table and it will automatically be placed down onto it. One player did mention that “the plates spawn a bit too quickly to deliver them fast,” which added unnecessary pressure where we didn’t want and was tweaked for the final prototype.
 
 Even with these issues, players still expressed the game’s potential. A few offered ideas for the game such as, imagining it as “cafe theme” or delivering drinks “in a certain amount of time without spilling stuff.” The concept overall is strong, the physics were entertaining, and with improved camera control, UI, and fine-tuned interactions, the game would tick all the boxes of the testers wants and wishes.
 
@@ -88,7 +92,7 @@ Key considerations included maintaining proper scale and proportions throughout 
 * Picking up finished plates bringing them to dishwasher/sink
 * Changing of table numbers
 * If the player is fast and efficient, customers leave tips that can be used for upgrades (faster wheel power, time slow, etc).
-* Adding a two player where one plays as the WaitorBot and one plays as the cook and has to plate orders correctly following off an order ticket
+* Adding a two player where one plays as the RoboWaiter and one plays as the cook and has to plate orders correctly following off an order ticket
 * Adding obstacles:
     * Customers walking
     * Coffee/water spilt on the ground (can be remedied by putting out the wet floor sign)
